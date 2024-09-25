@@ -7,15 +7,17 @@ const Home = () => {
     const [tasks, setTasks] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [searchPriority, setSearchPriority] = useState('');
-
+    const [currentTask, setCurrentTask] = useState(null); // Track the current task being edited
+    
     useEffect(() => {
         setTasks(fetchTasks());
     }, []);
 
     const handleTaskSubmit = (newTask) => {
         if (newTask.id) {
-            setTasks(fetchTasks());
+            setCurrentTask(null); // Reset the current task
         }
+        setTasks(fetchTasks());
     };
 
     const handleDeleteTask = (id) => {
@@ -28,6 +30,9 @@ const Home = () => {
         setTasks(fetchTasks());
     };
 
+    const handleEditTask = (task) => {
+        setCurrentTask(task); // Set the task to be edited
+    };
     const handleSearch = (e) => {
         setSearchQuery(e.target.value);
     };
@@ -35,7 +40,6 @@ const Home = () => {
     const handlePriorityChange = (e) => {
         setSearchPriority(e.target.value);
     };
-
     const filteredTasks = tasks.filter(task => {
         const matchesName = task.name.toLowerCase().includes(searchQuery.toLowerCase());
         const matchesPriority = searchPriority ? task.priority === searchPriority : true;
@@ -64,13 +68,12 @@ const Home = () => {
         option value = "Medium" > Medium < /option> <
         option value = "Low" > Low < /option> < /
         select > <
-        /div> <
-        TaskForm onSubmit = { handleTaskSubmit }
-        /> <
-        TaskList tasks = { filteredTasks }
-        onUpdateTask = { handleTaskSubmit }
-        onDeleteTask = { handleDeleteTask }
-        onMarkTaskComplete = { handleMarkTaskComplete }
+        /div>   <TaskForm task={currentTask} onSubmit={handleTaskSubmit} />
+        <TaskList
+            tasks={filteredTasks}
+            onUpdateTask={handleEditTask} // Update this line to pass the edit handler
+            onDeleteTask={handleDeleteTask}
+            onMarkTaskComplete={handleMarkTaskComplete}
         /> < /
         div >
     );

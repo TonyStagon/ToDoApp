@@ -298,7 +298,7 @@ nav button:hover {
     /* Add a white border */
     border-radius: 0.25rem;
     /* Optional: adds rounded corners */
-    background-color: white;
+    background-color: rgb(95, 23, 189);
     /* Optional: keeps the background transparent */
     position: relative;
     /* Enables positioning for centering */
@@ -363,6 +363,7 @@ nav button:hover {
 }
 
 .profile-input {
+    
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -423,7 +424,10 @@ nav button:hover {
     border: none;
     cursor: pointer;
 }
+.profile-picture{
 
+    border-radius: 30%;
+}
 .navbar-profile-picture {
     width: 70px;
     height: 70px;
@@ -453,6 +457,7 @@ nav button:hover {
 .search-container {
     display: flex;
     gap: 1rem;
+    color: #046b09;
     margin-bottom: 1rem;
     margin-left: 30%;
 }

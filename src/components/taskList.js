@@ -11,6 +11,7 @@ const TaskList = ({ tasks, onUpdateTask, onDeleteTask, onMarkTaskComplete }) => 
                     task = { task }
                     onDelete = { onDeleteTask }
                     onMarkComplete = { onMarkTaskComplete }
+                    onUpdateTask={onUpdateTask}
                     />
                 ))
             ) : ( <
